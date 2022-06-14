@@ -4,16 +4,18 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean gameRunning = true;
-        List<Character> allGuesses = new ArrayList<>();
-        List<Character> comparison = new ArrayList<>();
-        List<Character> correctGuesses = new ArrayList<>();
-        List<Character> incorrectGuesses = new ArrayList<>();
+        ArrayList<Character> allGuesses = new ArrayList<>();
+        ArrayList<Character> comparison = new ArrayList<>();
+        ArrayList<Character> correctGuesses = new ArrayList<>();
+        ArrayList<Character> incorrectGuesses = new ArrayList<>();
 
 
         while(gameRunning) {
-            System.out.println("HANGMAN");
             boolean inGame = true;
             int numIncorrect = 0;
+
+            System.out.println("HANGMAN");
+
             incorrectGuesses.clear();
             allGuesses.clear();
             String generatedWord = Game.chooseWord();
@@ -32,7 +34,7 @@ public class App {
                             String input = sc.nextLine();
                             if (input.length() != 1) {
                                 System.out.println("INVALID ENTRY! Please enter a single character.");
-                            } else if (!input.matches("[[A-Z][a-z]]")) {
+                            } else if (!input.matches("[[A-Z]a-z]")) {
                                 System.out.println("INVALID ENTRY! Numbers are not allowed.");
                             } else if (Game.duplicateCheck(input, allGuesses)) {
                                 System.out.println("INVALID ENTRY! You already guessed that letter.");
@@ -43,12 +45,14 @@ public class App {
                                 validInput = true;
                             }
                         } catch (Exception e) {
-                            System.out.println(e);
+                            System.out.println("Input error!");
                         }
                     }
                     if (Game.guessMatch(newGuess, comparison)) {
-                        int index = comparison.indexOf(newGuess);
-                        correctGuesses.set(index, newGuess);
+                        ArrayList<Integer> indexes = (ArrayList<Integer>) Game.getIndexes(comparison,newGuess);
+                        for(int index: indexes){
+                            correctGuesses.set(index, newGuess);
+                        }
                     } else {
                         incorrectGuesses.add(newGuess);
                         numIncorrect++;
@@ -77,7 +81,7 @@ public class App {
                         System.out.println("Invalid Entry! Please enter yes or no.");
                     }
                 } catch (Exception e) {
-                    System.out.println(e);
+                    System.out.println("Input Error!");
                 }
             }
         }

@@ -40,8 +40,7 @@ public class Game {
     }
      public static String chooseWord() {
         //String[] words = new String[]{"cat", "bat", "vat", "mat"};
-         String[] words = new String[]{"cat","wombat"};
-
+         String[] words = new String[]{"cataract"};
         Random rnd = new Random();
         int choice = rnd.nextInt(words.length);
         String out = words[choice];
@@ -86,5 +85,14 @@ public class Game {
             }
         }
         return false;
+    }
+    public static List getIndexes(ArrayList<Character> in,char guess){
+        ArrayList<Integer> indexes = new ArrayList<>();
+        for(int x =0;x< in.size();x++){
+            if(guess == in.get(x)){
+                indexes.add(x);
+            }
+        }
+        return indexes;
     }
 }
