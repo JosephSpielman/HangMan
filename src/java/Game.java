@@ -39,8 +39,8 @@ public class Game {
         System.out.println("\t===");
     }
      public static String chooseWord() {
-        //String[] words = new String[]{"cat", "bat", "vat", "mat"};
-         String[] words = new String[]{"cataract"};
+        String[] words = new String[]{"cat", "bat", "vat", "mat","bologna","cheese","blueberries","topaz",
+        "abyss","frizzled","mnemonic","transcript","quizzes","whizzing"};
         Random rnd = new Random();
         int choice = rnd.nextInt(words.length);
         String out = words[choice];
