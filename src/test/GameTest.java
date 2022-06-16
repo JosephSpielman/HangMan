@@ -29,10 +29,24 @@ class GameTest {
         in.add('c');
         in.add('a');
         in.add('t');
-        assertTrue(Game.duplicateCheck("q",in));
+        assertFalse(Game.duplicateCheck("q",in));
     }
 
     @org.junit.jupiter.api.Test
-    void guessMatch() {
+    void guessMatchTrue() {
+        ArrayList<Character> in = new ArrayList<>();
+        in.add('c');
+        in.add('a');
+        in.add('t');
+        assertTrue(Game.guessMatch('c',in));
+    }
+
+    @org.junit.jupiter.api.Test
+    void guessMatchFalse() {
+        ArrayList<Character> in = new ArrayList<>();
+        in.add('c');
+        in.add('a');
+        in.add('t');
+        assertFalse(Game.guessMatch('q',in));
     }
 }
